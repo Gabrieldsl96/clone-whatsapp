@@ -22,7 +22,7 @@ const HomePage = () => {
         { chatId: 3, title: 'Fulano de Tal', image: '/images/avatar.png' },
         { chatId: 4, title: 'Fulano de Tal', image: '/images/avatar.png' },
     ]);
-    const [activeChat, setActiveChat] = useState({});
+    const [activeChat, setActiveChat] = useState({ chatId: 2 });
 
 
     return (

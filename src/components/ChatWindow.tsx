@@ -1,4 +1,8 @@
-import EmojiPicker from 'emoji-picker-react'
+import dynamic from "next/dynamic";
+
+const EmojiPicker = dynamic(() => import("emoji-picker-react"), {
+    ssr: false,
+});
 
 import SearchIcon from '@mui/icons-material/Search';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
