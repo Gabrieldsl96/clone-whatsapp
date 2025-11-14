@@ -1,0 +1,116 @@
+import EmojiPicker from 'emoji-picker-react'
+
+import SearchIcon from '@mui/icons-material/Search';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
+import CloseIcon from '@mui/icons-material/Close';
+import SendIcon from '@mui/icons-material/Send';
+import MicIcon from '@mui/icons-material/Mic';
+import { useState } from 'react';
+
+export const ChatWindow = () => {
+
+    const [emojiOpen, setEmojiOpen] = useState(false);
+
+    const handleEmojiClick = () => {
+
+    }
+
+    const handleOpenEmoji = () => {
+        setEmojiOpen(true)
+    }
+
+    const handleCloseEmoji = () => {
+        setEmojiOpen(false)
+    }
+
+    return (
+        <div className='flex flex-col h-full'>
+            {/*chatWindow--header*/}
+            <div className="h-[60px] border-b border-[#ccc] flex justify-between items-center">
+                {/*chatWindow--headerinfo*/}
+                <div className="flex items-center cursor-pointer">
+                    {/*chatWindow--avatar*/}
+                    <img
+                        src="/images/avatar.png"
+                        alt=""
+                        className="w-[40px] h-[40px] rounded-[50%] ml-[15px] mr-[15px]"
+                    />
+                    {/*chatWindow--name*/}
+                    <div className="text-[17px] text-black">Gabriel Lemos</div>
+                </div>
+
+                {/*chatWindow--headersbuttons*/}
+                <div className='flex items-center mr-[15px]'>
+                    {/*chatWindow--btn*/}
+                    <div className='w-[40px] h-[40px] rounded-[50%] flex justify-center items-center cursor-pointer'>
+                        <SearchIcon className='text-neutral-400 w-5 h-5' />
+                    </div>
+                    <div className='w-[40px] h-[40px] rounded-[50%] flex justify-center items-center cursor-pointer'>
+                        <AttachFileIcon className='text-neutral-400 w-5 h-5' />
+                    </div>
+                    <div className='w-[40px] h-[40px] rounded-[50%] flex justify-center items-center cursor-pointer'>
+                        <MoreVertIcon className='text-neutral-400 w-5 h-5' />
+                    </div>
+                </div>
+
+            </div>
+
+            {/*chatWindow--body*/}
+            <div className={`flex-1 overflow-y-auto bg-[#E5DDD5] bg-contain bg-center bg-[url('/images/fundo2.jpg')]`}>
+
+            </div>
+
+            {/*chatWindow--emojiarea*/}
+            <div className={`[&_aside]:w-auto! **:max-w-full! overflow-y-hidden transition-all duration-300 ease-in-out ${emojiOpen ? 'h-[300px]' : 'h-0'}`}>
+                <EmojiPicker
+                    onEmojiClick={handleEmojiClick}
+                    skinTonesDisabled
+                    searchDisabled
+                />
+            </div>
+
+            {/*chatWindow--footer*/}
+            <div className={`h-[62px] flex items-center`}>
+
+                {/*chatWindow--pre*/}
+                <div className='flex mx-[15px]'>
+                    {emojiOpen && (
+                        <div
+                            className='w-[40px] h-[40px] rounded-[50%] flex justify-center items-center cursor-pointer'
+                            onClick={handleCloseEmoji}
+                        >
+                            <CloseIcon className='text-neutral-400 w-5 h-5' />
+                        </div>
+                    )}
+
+                    <div
+                        className='w-[40px] h-[40px] rounded-[50%] flex justify-center items-center cursor-pointer'
+                        onClick={handleOpenEmoji}
+                    >
+                        <InsertEmoticonIcon className={`w-5 h-5 ${emojiOpen ? 'text-[#009688]' : 'text-neutral-400'}`} />
+                    </div>
+
+                </div>
+
+                {/*chatWindow--inputarea*/}
+                <div className='flex-1'>
+                    <input
+                        type='text'
+                        placeholder='Digite uma mensagem'
+                        className='w-full h-[40px] border-0 outline-0 bg-white rounded-[20px] text-[15px] text-[#4A4A4A] pl-[15px]'
+                    />
+                </div>
+
+                {/*chatWindow--pos*/}
+                <div className='flex mx-[15px]'>
+                    <div className='w-[40px] h-[40px] rounded-[50%] flex justify-center items-center cursor-pointer'>
+                        <SendIcon className='text-neutral-400 w-5 h-5' />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    )
+}

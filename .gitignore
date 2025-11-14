@@ -17,6 +17,10 @@
 /.next/
 /out/
 
+# cursor e prompts
+/.cursor
+/.prompts
+
 # production
 /build
 
