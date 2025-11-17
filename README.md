@@ -13,7 +13,7 @@ Um clone funcional do WhatsApp desenvolvido com **Next.js 16**, **React 19** e *
 - ✅ Interface responsiva e moderna
 - ✅ Emoji picker integrado
 - ✅ Validação de formulários com React Hook Form
-- ✅ UI componentes customizados com Material-UI e Tailwind CSS
+- ✅ Componentes UI customizados com Material-UI e Tailwind CSS
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -49,35 +49,35 @@ Um clone funcional do WhatsApp desenvolvido com **Next.js 16**, **React 19** e *
 
 ### 1. Clonar o repositório
 
-\`\`\`bash
+```bash
 git clone https://github.com/Gabrieldsl96/clone-whatsapp.git
 cd clone-whatsapp
-\`\`\`
+```
 
 ### 2. Instalar dependências
 
-\`\`\`bash
+```bash
 pnpm install
 # ou
 npm install
-\`\`\`
+```
 
 ### 3. Configurar Firebase
 
 Crie um arquivo `.env.local` na raiz do projeto com suas credenciais do Firebase:
 
-\`\`\`env
+```env
 NEXT_PUBLIC_FIREBASE_API_KEY=seu_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=seu_auth_domain
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=seu_project_id
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=seu_storage_bucket
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=seu_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=seu_app_id
-\`\`\`
+```
 
 ### 4. Executar o servidor de desenvolvimento
 
-\`\`\`bash
+```bash
 pnpm dev
 # ou
 npm run dev
@@ -87,7 +87,7 @@ O aplicativo estará disponível em [http://localhost:3000](http://localhost:300
 
 ## 📁 Estrutura do Projeto
 
-\`\`\`
+```
 src/
 ├── app/
 │   ├── layout.tsx          # Layout principal
@@ -107,7 +107,7 @@ src/
 │   └── utils.ts            # Funções utilitárias
 └── types/
     └── global.d.ts         # Definições de tipos globais
-\`\`\`
+```
 
 ## 🔐 Autenticação
 
@@ -137,7 +137,7 @@ O projeto utiliza Tailwind CSS com configuração customizada. Você pode ajusta
 
 - [ ] Upload de imagens e arquivos
 - [ ] Chamadas de voz e vídeo
-- [ ] Grupo de chats
+- [ ] Grupos de chat
 - [ ] Status online/offline
 - [ ] Confirmação de entrega de mensagens
 - [ ] Busca de mensagens
