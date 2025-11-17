@@ -112,9 +112,9 @@ export const ChatWindow = ({ user, data, onOpenSidebar }: any) => {
 
 
     return (
-        <div className='flex flex-col h-full'>
+        <div className='flex flex-col h-full w-full'>
             {/*chatWindow--header*/}
-            <div className="h-[60px] border-b border-[#ccc] flex justify-between items-center">
+            <div className="h-[60px] border-b border-[#ccc] flex justify-between items-center flex-shrink-0">
                 {/*chatWindow--headerinfo*/}
                 <div className="flex items-center cursor-pointer">
                     {/* Botão de menu no mobile - lado esquerdo */}
@@ -153,7 +153,7 @@ export const ChatWindow = ({ user, data, onOpenSidebar }: any) => {
             {/*chatWindow--body*/}
             <div
                 ref={body}
-                className={`flex-1 px-[30px] py-[20px] overflow-y-auto bg-[#E5DDD5] bg-contain bg-center bg-[url('/images/fundo2.jpg')]`}
+                className={`flex-1 px-[30px] py-[20px] overflow-y-auto bg-[#E5DDD5] bg-contain bg-center bg-[url('/images/fundo2.jpg')] min-h-0`}
             >
                 {list.map((item, key) => (
                     <MessageItem
@@ -165,7 +165,7 @@ export const ChatWindow = ({ user, data, onOpenSidebar }: any) => {
             </div>
 
             {/*chatWindow--emojiarea*/}
-            <div className={`[&_aside]:w-auto! **:max-w-full! overflow-y-hidden transition-all duration-300 ease-in-out ${emojiOpen ? 'h-[300px]' : 'h-0'}`}>
+            <div className={`[&_aside]:w-auto! **:max-w-full! overflow-y-hidden transition-all duration-300 ease-in-out flex-shrink-0 ${emojiOpen ? 'h-[300px]' : 'h-0'}`}>
                 <EmojiPicker
                     onEmojiClick={handleEmojiClick}
                     skinTonesDisabled
@@ -174,7 +174,7 @@ export const ChatWindow = ({ user, data, onOpenSidebar }: any) => {
             </div>
 
             {/*chatWindow--footer*/}
-            <div className={`h-[62px] flex items-center`}>
+            <div className={`h-[62px] flex items-center flex-shrink-0`}>
 
                 {/*chatWindow--pre*/}
                 <div className='flex mx-[15px]'>
