@@ -11,11 +11,12 @@ import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import MicIcon from '@mui/icons-material/Mic';
+import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect, useRef, useState } from 'react';
 import { MessageItem } from "./MessageItem";
 import { Api } from "@/app/Api";
 
-export const ChatWindow = ({ user, data }: any) => {
+export const ChatWindow = ({ user, data, onOpenSidebar }: any) => {
 
     const body = useRef<HTMLDivElement | null>(null);
 
@@ -116,6 +117,13 @@ export const ChatWindow = ({ user, data }: any) => {
             <div className="h-[60px] border-b border-[#ccc] flex justify-between items-center">
                 {/*chatWindow--headerinfo*/}
                 <div className="flex items-center cursor-pointer">
+                    {/* Botão de menu no mobile - lado esquerdo */}
+                    <button
+                        onClick={onOpenSidebar}
+                        className="md:hidden flex items-center justify-center text-neutral-600 hover:text-neutral-900 w-[40px] h-[40px] mr-[10px]"
+                    >
+                        <MenuIcon />
+                    </button>
                     {/*chatWindow--avatar*/}
                     <img
                         src={data.image}

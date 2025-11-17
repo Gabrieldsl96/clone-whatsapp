@@ -160,27 +160,31 @@ const HomePage = () => {
                         />
                     ))}
 
+                    {/* Botão para fechar chat */}
+                    {activeChat && (
+                        <div className="p-4 border-t border-gray-200">
+                            <button
+                                onClick={() => {
+                                    setActiveChat(null);
+                                    setSidebarOpen(false);
+                                }}
+                                className="w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition-colors"
+                            >
+                                Fechar chat
+                            </button>
+                        </div>
+                    )}
                 </div>
 
             </div >
 
             {/*contentArea*/}
             <div className="flex-1 flex flex-col">
-                {/* Header com botão de menu no mobile */}
-                <div className="md:hidden flex items-center px-4 h-[60px] bg-white border-b-2 border-neutral-200">
-                    <button
-                        onClick={() => setSidebarOpen(!sidebarOpen)}
-                        className="flex items-center justify-center text-neutral-600 hover:text-neutral-900"
-                    >
-                        {sidebarOpen ? <CloseIcon /> : <MenuIcon />}
-                    </button>
-                </div>
-
                 <div className="flex-1">
                     {activeChat &&
-                        <ChatWindow user={user} data={activeChat} />
+                        <ChatWindow user={user} data={activeChat} onOpenSidebar={() => setSidebarOpen(true)} />
                     }
-                    {!activeChat && <ChatIntro />}
+                    {!activeChat && <ChatIntro onOpenSidebar={() => setSidebarOpen(true)} />}
                 </div>
             </div >
 
