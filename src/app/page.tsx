@@ -179,7 +179,7 @@ const HomePage = () => {
             </div >
 
             {/*contentArea*/}
-            <div className="flex-1 flex flex-col w-screen md:w-auto h-screen md:h-auto">
+            <div className="flex-1 flex flex-col h-screen md:h-auto">
                 <div className="flex-1 overflow-hidden">
                     {activeChat &&
                         <ChatWindow user={user} data={activeChat} onOpenSidebar={() => setSidebarOpen(true)} />
