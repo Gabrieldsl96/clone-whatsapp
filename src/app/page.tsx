@@ -4,36 +4,77 @@ import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChatListItem } from '@/components/ChatListItem';
 import { ChatIntro } from '@/components/ChatIntro';
 import { ChatWindow } from '@/components/ChatWindow';
+import { NewChat } from '@/components/NewChat';
+import { Login } from '@/components/login';
+import { Api } from './Api';
+
+import { Timestamp } from "firebase/firestore";
 
 export type chatList = {
     chatId: number;
     title: string;
     image: string;
+    lastMessage?: string;
+    lastMessageDate?: number | Timestamp;
+}
+
+type User = {
+    id: string;
+    name: string;
+    avatar: string;
 }
 
 const HomePage = () => {
-    const [chatList, seChatList] = useState<chatList[]>([
-        { chatId: 1, title: 'Fulano de Tal', image: '/images/avatar.png' },
-        { chatId: 2, title: 'Fulano de Tal', image: '/images/avatar.png' },
-        { chatId: 3, title: 'Fulano de Tal', image: '/images/avatar.png' },
-        { chatId: 4, title: 'Fulano de Tal', image: '/images/avatar.png' },
-    ]);
-    const [activeChat, setActiveChat] = useState({ chatId: 2 });
+    const [chatList, setChatList] = useState<chatList[]>([]);
+    const [activeChat, setActiveChat] = useState<any>(null);
+    const [user, setUser] = useState<User | null>(null);
+    const [showNewChat, setShowNewChat] = useState(false);
 
+    useEffect(() => {
+        if (user !== null) {
+            let unsub = Api.onChatList(user.id, setChatList);
+            return unsub;
+        }
+    }, [user])
+
+    const handleNewChat = () => {
+        setShowNewChat(true)
+    }
+
+    const handleLoginData = async (u: any) => {
+        let newUser: any = {
+            id: u.uid,
+            name: u.displayName,
+            avatar: u.photoURL
+        }
+        await Api.addUser(newUser)
+        setUser(newUser)
+    }
+
+    if (user === null) {
+        return (<Login onReceive={handleLoginData} />)
+    }
 
     return (
         <div className="h-screen flex bg-neutral-100">
             {/*sideber*/}
             <div className="w-[35%] max-w-[415px] flex flex-col border-r-2 border-neutral-200">
 
+                <NewChat
+                    chatlist={chatList}
+                    user={user}
+                    show={showNewChat}
+                    setShow={setShowNewChat}
+                />
+
                 <header className="h-[60px] flex justify-between items-center px-4">
                     {/*avatar*/}
                     <img
-                        src="/images/avatar.png"
+                        src={user.avatar}
                         alt=""
                         className="w-[40px] h-[40px] rounded-[20px] cursor-pointer"
                     />
@@ -46,7 +87,10 @@ const HomePage = () => {
                             />
                         </div>
                         {/*mensagem*/}
-                        <div className="cursor-pointer w-[40px] h-[40px] rounded-[20px] flex justify-center items-center">
+                        <div
+                            className="cursor-pointer w-[40px] h-[40px] rounded-[20px] flex justify-center items-center"
+                            onClick={handleNewChat}
+                        >
                             <ChatIcon
                                 className='text-neutral-400'
                             />
@@ -81,22 +125,21 @@ const HomePage = () => {
                         <ChatListItem
                             key={key}
                             data={item}
-                            active={activeChat.chatId === chatList[key].chatId}
-                            onClick={() => setActiveChat(chatList[key])}
+                            active={activeChat && activeChat.chatId === item.chatId}
+                            onClick={() => setActiveChat(item)}
                         />
                     ))}
+
                 </div>
 
             </div >
 
             {/*contentArea*/}
             < div className="flex-1" >
-                {activeChat.chatId !== undefined &&
-                    <ChatWindow />
+                {activeChat &&
+                    <ChatWindow user={user} data={activeChat} />
                 }
-                {activeChat.chatId === undefined &&
-                    <ChatIntro />
-                }
+                {!activeChat && <ChatIntro />}
             </div >
 
         </div >
