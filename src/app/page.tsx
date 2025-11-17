@@ -63,7 +63,7 @@ const HomePage = () => {
     }
 
     return (
-        <div className="h-screen flex bg-neutral-100">
+        <div className="h-screen md:h-screen flex bg-neutral-100" style={{ height: '100dvh' }}>
             {/* Overlay para mobile */}
             {sidebarOpen && (
                 <div
@@ -179,7 +179,7 @@ const HomePage = () => {
             </div >
 
             {/*contentArea*/}
-            <div className="flex-1 flex flex-col h-screen md:h-auto">
+            <div className="flex-1 flex flex-col" style={{ height: '100dvh' }}>
                 <div className="flex-1 overflow-hidden">
                     {activeChat &&
                         <ChatWindow user={user} data={activeChat} onOpenSidebar={() => setSidebarOpen(true)} />
