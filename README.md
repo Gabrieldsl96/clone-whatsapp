@@ -150,14 +150,3 @@ Este projeto é open source e está disponível sob a licença MIT.
 ## 👨‍💻 Autor
 
 **Gabriel Lemos**
-- GitHub: [@Gabrieldsl96](https://github.com/Gabrieldsl96)
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se livre para abrir issues e pull requests.
-
----
-
-<div align="center">
-  Desenvolvido com ❤️ por Gabriel Lemos
-</div>
