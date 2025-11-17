@@ -114,7 +114,7 @@ export const ChatWindow = ({ user, data, onOpenSidebar }: any) => {
     return (
         <div className='flex flex-col h-full w-full'>
             {/*chatWindow--header*/}
-            <div className="h-[60px] border-b border-[#ccc] flex justify-between items-center flex-shrink-0">
+            <div className="h-[60px] border-b border-[#ccc] flex justify-between items-center shrink-0">
                 {/*chatWindow--headerinfo*/}
                 <div className="flex items-center cursor-pointer">
                     {/* Botão de menu no mobile - lado esquerdo */}
@@ -165,7 +165,7 @@ export const ChatWindow = ({ user, data, onOpenSidebar }: any) => {
             </div>
 
             {/*chatWindow--emojiarea*/}
-            <div className={`[&_aside]:w-auto! **:max-w-full! overflow-y-hidden transition-all duration-300 ease-in-out flex-shrink-0 ${emojiOpen ? 'h-[300px]' : 'h-0'}`}>
+            <div className={`[&_aside]:w-auto! **:max-w-full! overflow-y-hidden transition-all duration-300 ease-in-out shrink-0 ${emojiOpen ? 'h-[300px]' : 'h-0'}`}>
                 <EmojiPicker
                     onEmojiClick={handleEmojiClick}
                     skinTonesDisabled
@@ -174,7 +174,7 @@ export const ChatWindow = ({ user, data, onOpenSidebar }: any) => {
             </div>
 
             {/*chatWindow--footer*/}
-            <div className={`h-[62px] flex items-center flex-shrink-0`}>
+            <div className={`h-[62px] flex items-center shrink-0`}>
 
                 {/*chatWindow--pre*/}
                 <div className='flex mx-[15px]'>
