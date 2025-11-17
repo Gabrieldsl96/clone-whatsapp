@@ -59,7 +59,23 @@ export const Api = {
         return list;
     },
     addNewChat: async (user: any, user2: any) => {
-        // Criar novo chat
+        // Verificar se já existe um chat com esse usuário
+        const user1DocRef = doc(db, 'users', user.id);
+        const user1Snap = await getDoc(user1DocRef);
+
+        if (user1Snap.exists()) {
+            const user1Data = user1Snap.data();
+            if (user1Data.chats) {
+                // Procurar se existe chat com user2
+                const existingChat = user1Data.chats.find((chat: any) => chat.with === user2.id);
+                if (existingChat) {
+                    // Chat já existe, não criar novamente
+                    return existingChat.chatId;
+                }
+            }
+        }
+
+        // Se não existe, criar novo chat
         const chatsCollectionRef = collection(db, 'chats');
         const newChat = await addDoc(chatsCollectionRef, {
             messages: [],
@@ -67,8 +83,8 @@ export const Api = {
         });
 
         // Atualizar o primeiro usuário
-        const user1DocRef = doc(db, 'users', user.id);
-        await updateDoc(user1DocRef, {
+        const user1UpdateRef = doc(db, 'users', user.id);
+        await updateDoc(user1UpdateRef, {
             chats: arrayUnion({
                 chatId: newChat.id,
                 title: user2.name,
@@ -87,6 +103,8 @@ export const Api = {
                 with: user.id
             })
         });
+
+        return newChat.id;
     },
     onChatList: (userId: any, setChatList: any) => {
         const userDocRef = doc(db, "users", userId);

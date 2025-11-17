@@ -8,7 +8,7 @@ type Contact = {
     avatar: string;
 };
 
-export const NewChat = ({ user, chatlist, show, setShow }: any) => {
+export const NewChat = ({ user, chatlist, show, setShow, onSelectChat }: any) => {
     const [list, setList] = useState<Contact[]>([]);
 
     useEffect(() => {
@@ -22,7 +22,15 @@ export const NewChat = ({ user, chatlist, show, setShow }: any) => {
     }, [user])
 
     const addNewChat = async (user2: any) => {
-        await Api.addNewChat(user, user2)
+        const chatId = await Api.addNewChat(user, user2);
+
+        // Encontrar o chat na lista e ativar
+        if (chatlist && onSelectChat) {
+            const existingChat = chatlist.find((chat: any) => chat.chatId === chatId);
+            if (existingChat) {
+                onSelectChat(existingChat);
+            }
+        }
 
         handleClose();
     }
@@ -32,7 +40,7 @@ export const NewChat = ({ user, chatlist, show, setShow }: any) => {
     }
 
     return (
-        <div className={`w-[35%] max-w-[415px] fixed top-0 bottom-0 bg-white flex flex-col border-r border-[#ddd] transition-all duration-300 ease-in-out ${show ? 'left-0' : '-left-[415px]'}`}>{/*newChat*/}
+        <div className={`w-full md:w-[415px] fixed md:fixed top-0 md:top-0 bottom-0 md:bottom-0 left-0 md:left-0 bg-white flex flex-col border-r border-[#ddd] transition-all duration-300 ease-in-out ${show ? 'translate-x-0' : '-translate-x-full'} z-50 md:z-50 h-full md:h-full`}>{/*newChat*/}
             {/*newChat--head*/}
             <div className="flex bg-[#00bfa5] items-center pt-[60px] pr-[15px] pb-[15px] pl-[15px]">
                 {/*newChat--backbutton*/}
