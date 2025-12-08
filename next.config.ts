@@ -1,14 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  reactCompiler: true,
+  reactCompiler: false,
+
+  webpack: (config) => {
+    return config;
+  },
+
   transpilePackages: [
-    '@mui/material',
-    '@mui/icons-material',
-    '@emotion/react',
-    '@emotion/styled',
-    '@emotion/use-insertion-effect-with-fallbacks',
+    "@mui/material",
+    "@mui/icons-material",
+    "@emotion/react",
+    "@emotion/styled",
+    "@emotion/use-insertion-effect-with-fallbacks",
   ],
 };
 
